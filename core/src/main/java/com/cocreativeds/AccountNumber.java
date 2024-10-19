@@ -1,11 +1,16 @@
 package com.cocreativeds;
+import java.util.Random;
 import java.util.Objects;
 /**
- * 口座番号クラス。
  * Account number class.
  * 
- * <p>日本の銀行における口座番号7桁を表すクラス<BR>
- * Account number(7 digit) class for Japanese bank.
+ * <p>
+ * Account number(7 digit) class for Japanese banks.
+ * 
+ * <p>
+ * 口座番号クラス
+ * <p>
+ * 日本の銀行における口座番号7桁を表すクラス
  * 
  */
 public class AccountNumber {
@@ -18,10 +23,10 @@ public class AccountNumber {
      * 
      * <p>指定された口座番号でインスタンスを生成する。
      * 
-     * @param an 口座番号
+     * @param accountNumber 口座番号
      */
-    public AccountNumber(String an) {
-        this.setAccountNumber(an);
+    public AccountNumber(String accountNumber) {
+        this.setAccountNumber(accountNumber);
     }
 
     /**
@@ -48,21 +53,33 @@ public class AccountNumber {
      * 
      * <p>インスタンスに口座番号を設定する。
      * 
-     * @param an 口座番号
+     * @param accountNumber 口座番号
      * @throws IllegalArgumentException 口座番号が7桁の数字でないとき
      */
-    public void setAccountNumber(String an) {
-        if (an == null) {
+    public void setAccountNumber(String accountNumber) {
+        if (accountNumber == null) {
             throw new IllegalArgumentException("口座番号は7桁の数字でなくてはならない");
         } else {
-            if (an.matches("[0-9]{7}")) {  // 7桁の数字？
-                this.accountNumber = an;
+            if (accountNumber.matches("[0-9]{7}")) {  // 7桁の数字？
+                this.accountNumber = accountNumber;
             } else {
                 throw new IllegalArgumentException("口座番号は7桁の数字でなくてはならない");
             }
         }
     }
 
+    /**
+     * 口座番号の採番
+     * 
+     * <p>
+     * 口座番号を採番します。
+     */
+    public void generateAccountNumber() {
+        Random random = new Random();
+        int a = random.nextInt(10000000);
+        String accountNumber = String.format("%07d",a);
+        this.setAccountNumber(accountNumber);
+    }
     /**
      * 文字列表現
      * 

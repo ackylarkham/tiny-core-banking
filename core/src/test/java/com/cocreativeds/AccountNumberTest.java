@@ -110,4 +110,11 @@ public class AccountNumberTest {
         AccountNumber an2 = an1.clone();
         assertEquals(an1, an2);
     }
+
+    @Test
+    void testGenerateAccountNumber() {
+        AccountNumber a = new AccountNumber();
+        a.generateAccountNumber();
+        System.out.println(a.getAccountNumber());
+    }
 }
